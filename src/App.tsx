@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from '@insforge/react';
+import { SignedIn, SignedOut, SignInButton, SignUpButton, useUser } from '@insforge/react';
 import Dashboard from './pages/Dashboard';
 import './App.css';
 
@@ -27,10 +26,10 @@ function App() {
               <p className="text-gray-600">追蹤你的學習旅程，記錄每一步成長</p>
             </div>
             <div className="space-y-4">
-              <SignInButton mode="redirect" className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+              <SignInButton className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium">
                 登入帳號
               </SignInButton>
-              <SignUpButton mode="redirect" className="w-full bg-white text-blue-600 py-3 px-4 rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition-colors font-medium">
+              <SignUpButton className="w-full bg-white text-blue-600 py-3 px-4 rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition-colors font-medium">
                 註冊新帳號
               </SignUpButton>
             </div>

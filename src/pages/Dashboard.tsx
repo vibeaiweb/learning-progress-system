@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { UserButton, useUser } from '@insforge/react';
-import { insforge } from '../lib/insforge';
 import CourseList from '../components/CourseList';
 import AddCourseModal from '../components/AddCourseModal';
 import StatsOverview from '../components/StatsOverview';

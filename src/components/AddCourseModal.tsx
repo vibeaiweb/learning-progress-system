@@ -23,7 +23,7 @@ export default function AddCourseModal({ onClose }: AddCourseModalProps) {
       setLoading(true);
       setError(null);
 
-      const { data, error: insertError } = await insforge.database
+      const { error: insertError } = await insforge.database
         .from('courses')
         .insert([
           {

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { insforge } from '../lib/insforge';
 import CourseDetailModal from './CourseDetailModal';
 
 interface Course {
