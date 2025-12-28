@@ -7,34 +7,69 @@ function App() {
 
   if (!isLoaded) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          <p className="mt-4 text-gray-600">載入中...</p>
+      <div className="min-h-screen flex items-center justify-center bg-neo-white">
+        <div className="neo-card p-8">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-16 h-16 border-neo border-neo-black animate-spin">
+              <div className="w-full h-full bg-neo-yellow"></div>
+            </div>
+            <p className="font-heading text-xl uppercase">載入中...</p>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neo-white">
       <SignedOut>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">學習進度管理系統</h1>
-              <p className="text-gray-600">追蹤你的學習旅程，記錄每一步成長</p>
+        <div className="min-h-screen flex items-center justify-center p-4"
+             style={{
+               backgroundImage: `
+                 repeating-linear-gradient(0deg, #000 0px, #000 2px, transparent 2px, transparent 20px),
+                 repeating-linear-gradient(90deg, #000 0px, #000 2px, transparent 2px, transparent 20px)
+               `,
+               backgroundColor: '#FFED4E'
+             }}>
+          <div className="w-full max-w-xl">
+            <div className="neo-card p-8 md:p-12 bg-neo-white">
+              <div className="text-center mb-8">
+                <div className="inline-block border-neo border-neo-black bg-neo-cyan px-6 py-2 mb-6">
+                  <h1 className="font-heading text-4xl md:text-5xl uppercase">
+                    學習系統
+                  </h1>
+                </div>
+                <p className="font-body text-lg font-bold">
+                  追蹤進度 · 記錄成長 · 達成目標
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <SignInButton className="neo-btn-primary w-full">
+                  登入帳號
+                </SignInButton>
+                <SignUpButton className="neo-btn-secondary w-full">
+                  註冊新帳號
+                </SignUpButton>
+              </div>
+
+              <div className="mt-8 pt-6 border-t-neo border-neo-black">
+                <div className="flex items-center justify-center gap-4">
+                  <div className="w-8 h-8 border-neo border-neo-black bg-neo-magenta"></div>
+                  <p className="font-body font-bold text-sm uppercase">
+                    Email / Google OAuth
+                  </p>
+                  <div className="w-8 h-8 border-neo border-neo-black bg-neo-cyan"></div>
+                </div>
+              </div>
             </div>
-            <div className="space-y-4">
-              <SignInButton className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                登入帳號
-              </SignInButton>
-              <SignUpButton className="w-full bg-white text-blue-600 py-3 px-4 rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition-colors font-medium">
-                註冊新帳號
-              </SignUpButton>
-            </div>
-            <div className="mt-6 text-center text-sm text-gray-500">
-              <p>支援 Email 或 Google 登入</p>
+
+            <div className="mt-8 text-center">
+              <div className="inline-block border-neo border-neo-black bg-neo-white px-4 py-2 shadow-neo">
+                <p className="font-body font-bold text-sm">
+                  NEO-BRUTALISM DESIGN © 2025
+                </p>
+              </div>
             </div>
           </div>
         </div>

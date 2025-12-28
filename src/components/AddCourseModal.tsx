@@ -39,7 +39,7 @@ export default function AddCourseModal({ onClose }: AddCourseModalProps) {
       if (insertError) throw insertError;
 
       onClose();
-      window.location.reload(); // Refresh to show new course
+      window.location.reload();
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -48,98 +48,105 @@ export default function AddCourseModal({ onClose }: AddCourseModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-gray-900">新增課程</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              課程名稱 *
-            </label>
-            <input
-              type="text"
-              required
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-              placeholder="例如：JavaScript 基礎教學"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              課程描述
-            </label>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-              placeholder="簡單描述這門課程..."
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              課程類別
-            </label>
-            <input
-              type="text"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-              placeholder="例如：程式設計、語言學習"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              目標時數
-            </label>
-            <input
-              type="number"
-              min="0"
-              value={targetHours}
-              onChange={(e) => setTargetHours(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-              placeholder="預計學習多少小時？"
-            />
-          </div>
-
-          {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-              <p className="text-sm text-red-800">{error}</p>
-            </div>
-          )}
-
-          <div className="flex gap-3 pt-4">
+    <div className="fixed inset-0 bg-neo-black/80 flex items-center justify-center p-4 z-50">
+      <div className="w-full max-w-2xl">
+        <div className="neo-card p-8 bg-neo-white">
+          {/* Header */}
+          <div className="flex justify-between items-center mb-8 pb-6 border-b-neo border-neo-black">
+            <h2 className="font-heading text-3xl uppercase">新增課程</h2>
             <button
-              type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+              className="w-12 h-12 border-neo border-neo-black bg-neo-magenta text-neo-white font-heading text-2xl hover:bg-neo-black transition-colors"
             >
-              取消
-            </button>
-            <button
-              type="submit"
-              disabled={loading}
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? '新增中...' : '新增課程'}
+              ×
             </button>
           </div>
-        </form>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Title */}
+            <div>
+              <label className="block font-heading text-sm uppercase mb-2">
+                課程名稱 *
+              </label>
+              <input
+                type="text"
+                required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="neo-input w-full"
+                placeholder="例如：JAVASCRIPT 基礎"
+              />
+            </div>
+
+            {/* Description */}
+            <div>
+              <label className="block font-heading text-sm uppercase mb-2">
+                課程描述
+              </label>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="neo-textarea w-full"
+                placeholder="簡單描述這門課程..."
+              />
+            </div>
+
+            {/* Category & Hours Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block font-heading text-sm uppercase mb-2">
+                  課程類別
+                </label>
+                <input
+                  type="text"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="neo-input w-full"
+                  placeholder="程式設計"
+                />
+              </div>
+
+              <div>
+                <label className="block font-heading text-sm uppercase mb-2">
+                  目標時數
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  value={targetHours}
+                  onChange={(e) => setTargetHours(e.target.value)}
+                  className="neo-input w-full"
+                  placeholder="100"
+                />
+              </div>
+            </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="neo-card bg-neo-magenta p-4">
+                <p className="font-body font-bold text-neo-white text-sm">{error}</p>
+              </div>
+            )}
+
+            {/* Buttons */}
+            <div className="flex gap-4 pt-4 border-t-neo border-neo-black">
+              <button
+                type="button"
+                onClick={onClose}
+                className="neo-btn flex-1"
+              >
+                取消
+              </button>
+              <button
+                type="submit"
+                disabled={loading}
+                className="neo-btn-primary flex-1 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? '新增中...' : '新增課程'}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

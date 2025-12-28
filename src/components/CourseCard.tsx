@@ -26,9 +26,9 @@ export default function CourseCard({ course, progress, onUpdate }: CourseCardPro
   const [showDetail, setShowDetail] = useState(false);
 
   const statusColors = {
-    not_started: 'bg-gray-100 text-gray-800',
-    in_progress: 'bg-blue-100 text-blue-800',
-    completed: 'bg-green-100 text-green-800',
+    not_started: 'bg-gray-200',
+    in_progress: 'bg-neo-cyan',
+    completed: 'bg-neo-yellow',
   };
 
   const statusLabels = {
@@ -41,48 +41,50 @@ export default function CourseCard({ course, progress, onUpdate }: CourseCardPro
     <>
       <div
         onClick={() => setShowDetail(true)}
-        className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer"
+        className="neo-card-hover p-6"
       >
         <div className="flex justify-between items-start mb-4">
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-gray-900 mb-1">{course.title}</h3>
+            <h3 className="font-heading text-xl uppercase mb-2">{course.title}</h3>
             {course.category && (
-              <span className="inline-block text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600">
-                {course.category}
-              </span>
+              <div className="inline-block border-neo border-neo-black bg-neo-magenta px-3 py-1">
+                <span className="font-body text-xs font-bold uppercase text-neo-white">
+                  {course.category}
+                </span>
+              </div>
             )}
           </div>
-          <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[progress?.status || 'not_started']}`}>
-            {statusLabels[progress?.status || 'not_started']}
-          </span>
+          <div className={`border-neo border-neo-black px-3 py-1 ${statusColors[progress?.status || 'not_started']}`}>
+            <span className="font-body text-xs font-bold uppercase">
+              {statusLabels[progress?.status || 'not_started']}
+            </span>
+          </div>
         </div>
 
-        <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+        <p className="font-body font-bold text-sm mb-6 line-clamp-2">
           {course.description || '沒有描述'}
         </p>
 
-        <div className="space-y-3">
-          {/* Progress Bar */}
-          <div>
-            <div className="flex justify-between text-sm text-gray-600 mb-1">
-              <span>進度</span>
-              <span className="font-medium">{progress?.progress_percentage || 0}%</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div
-                className="bg-blue-600 h-2 rounded-full transition-all"
-                style={{ width: `${progress?.progress_percentage || 0}%` }}
-              ></div>
-            </div>
+        {/* Progress Bar */}
+        <div className="mb-4">
+          <div className="flex justify-between mb-2">
+            <span className="font-body font-bold text-xs uppercase">進度</span>
+            <span className="font-heading text-sm font-black">{progress?.progress_percentage || 0}%</span>
           </div>
+          <div className="neo-progress">
+            <div
+              className="neo-progress-bar"
+              style={{ width: `${progress?.progress_percentage || 0}%` }}
+            />
+          </div>
+        </div>
 
-          {/* Hours */}
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">學習時數</span>
-            <span className="font-medium text-gray-900">
-              {progress?.hours_spent || 0} / {course.target_hours || 0} 小時
-            </span>
-          </div>
+        {/* Hours */}
+        <div className="flex justify-between border-t-neo border-neo-black pt-4">
+          <span className="font-body font-bold text-xs uppercase">學習時數</span>
+          <span className="font-heading text-sm font-black">
+            {progress?.hours_spent || 0} / {course.target_hours || 0} HR
+          </span>
         </div>
       </div>
 

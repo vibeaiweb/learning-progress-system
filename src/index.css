@@ -2,69 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  * {
+    @apply border-neo-black;
   }
-  a:hover {
-    color: #747bff;
+
+  body {
+    @apply font-body bg-neo-white text-neo-black;
+    font-weight: 700;
   }
-  button {
-    background-color: #f9f9f9;
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading uppercase;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* Neo-Brutalism Button */
+  .neo-btn {
+    @apply border-neo border-neo-black bg-neo-white px-6 py-3 font-heading text-base uppercase font-black;
+    @apply shadow-neo transition-all duration-100;
+    @apply hover:shadow-neo-hover active:shadow-neo-active;
+    @apply hover:translate-x-[2px] hover:translate-y-[2px];
+    @apply active:translate-x-[4px] active:translate-y-[4px];
+  }
+
+  .neo-btn-primary {
+    @apply neo-btn bg-neo-yellow text-neo-black;
+  }
+
+  .neo-btn-secondary {
+    @apply neo-btn bg-neo-cyan text-neo-black;
+  }
+
+  .neo-btn-danger {
+    @apply neo-btn bg-neo-magenta text-neo-white;
+  }
+
+  /* Neo-Brutalism Card */
+  .neo-card {
+    @apply border-neo border-neo-black bg-neo-white shadow-neo;
+    @apply transition-all duration-100;
+  }
+
+  .neo-card-hover {
+    @apply neo-card cursor-pointer;
+    @apply hover:shadow-neo-hover hover:translate-x-[2px] hover:translate-y-[2px];
+    @apply active:shadow-neo-active active:translate-x-[4px] active:translate-y-[4px];
+  }
+
+  /* Neo-Brutalism Input */
+  .neo-input {
+    @apply border-neo border-neo-black bg-neo-white px-4 py-3 font-body font-bold;
+    @apply focus:outline-none focus:shadow-neo-sm;
+    @apply transition-shadow duration-100;
+  }
+
+  .neo-textarea {
+    @apply neo-input min-h-[120px] resize-none;
+  }
+
+  /* Neo-Brutalism Select */
+  .neo-select {
+    @apply neo-input cursor-pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='black' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 3rem;
+  }
+
+  /* Neo-Brutalism Progress Bar */
+  .neo-progress {
+    @apply border-neo border-neo-black bg-neo-white h-8 overflow-hidden;
+  }
+
+  .neo-progress-bar {
+    @apply h-full bg-neo-yellow border-r-neo border-neo-black transition-all duration-300;
   }
 }

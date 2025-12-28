@@ -29,7 +29,6 @@ export default function StatsOverview() {
     if (!user) return;
 
     try {
-      // Fetch all learning progress
       const { data: progressData } = await insforge.database
         .from('learning_progress')
         .select('*, courses(*)')
@@ -62,107 +61,119 @@ export default function StatsOverview() {
   if (loading) {
     return (
       <div className="flex justify-center items-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="neo-card p-8">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 border-neo border-neo-black animate-spin">
+              <div className="w-full h-full bg-neo-yellow"></div>
+            </div>
+            <p className="font-heading text-lg uppercase">載入中...</p>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-xl font-semibold text-gray-900">學習統計總覽</h2>
+    <div className="space-y-8">
+      <h2 className="font-heading text-2xl uppercase">學習統計總覽</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {/* Total Courses */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">總課程數</p>
-              <p className="text-3xl font-bold text-gray-900 mt-2">{stats.totalCourses}</p>
-            </div>
-            <div className="bg-blue-100 rounded-full p-3">
-              <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
+        <div className="neo-card p-6 bg-neo-yellow">
+          <div className="border-b-neo border-neo-black pb-4 mb-4">
+            <p className="font-heading text-sm uppercase">總課程數</p>
           </div>
+          <p className="font-heading text-5xl uppercase">{stats.totalCourses}</p>
         </div>
 
         {/* In Progress */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">進行中</p>
-              <p className="text-3xl font-bold text-blue-600 mt-2">{stats.inProgressCourses}</p>
-            </div>
-            <div className="bg-blue-100 rounded-full p-3">
-              <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
+        <div className="neo-card p-6 bg-neo-cyan">
+          <div className="border-b-neo border-neo-black pb-4 mb-4">
+            <p className="font-heading text-sm uppercase">進行中</p>
           </div>
+          <p className="font-heading text-5xl uppercase">{stats.inProgressCourses}</p>
         </div>
 
         {/* Completed */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">已完成</p>
-              <p className="text-3xl font-bold text-green-600 mt-2">{stats.completedCourses}</p>
-            </div>
-            <div className="bg-green-100 rounded-full p-3">
-              <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
+        <div className="neo-card p-6 bg-neo-magenta text-neo-white">
+          <div className="border-b-neo border-neo-white pb-4 mb-4">
+            <p className="font-heading text-sm uppercase">已完成</p>
           </div>
+          <p className="font-heading text-5xl uppercase">{stats.completedCourses}</p>
         </div>
 
         {/* Total Hours */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">總學習時數</p>
-              <p className="text-3xl font-bold text-purple-600 mt-2">{stats.totalHours}</p>
-              <p className="text-xs text-gray-500 mt-1">小時</p>
-            </div>
-            <div className="bg-purple-100 rounded-full p-3">
-              <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
+        <div className="neo-card p-6 bg-neo-white">
+          <div className="border-b-neo border-neo-black pb-4 mb-4">
+            <p className="font-heading text-sm uppercase">總學習時數</p>
           </div>
+          <p className="font-heading text-5xl uppercase">{stats.totalHours}</p>
+          <p className="font-body font-bold text-xs uppercase mt-2">HOURS</p>
         </div>
       </div>
 
       {/* Average Progress */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">平均學習進度</h3>
-        <div className="flex items-center gap-4">
-          <div className="flex-1">
-            <div className="w-full bg-gray-200 rounded-full h-4">
-              <div
-                className="bg-gradient-to-r from-blue-500 to-purple-600 h-4 rounded-full transition-all"
-                style={{ width: `${stats.averageProgress}%` }}
-              ></div>
-            </div>
-          </div>
-          <span className="text-2xl font-bold text-gray-900">{stats.averageProgress}%</span>
+      <div className="neo-card p-8 bg-neo-white">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="font-heading text-xl uppercase">平均學習進度</h3>
+          <span className="font-heading text-4xl uppercase">{stats.averageProgress}%</span>
+        </div>
+        <div className="neo-progress h-12">
+          <div
+            className="neo-progress-bar"
+            style={{ width: `${stats.averageProgress}%` }}
+          />
         </div>
       </div>
 
       {/* Motivational Message */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-sm p-6 text-white">
-        <h3 className="text-lg font-semibold mb-2">
-          {stats.completedCourses > 0
-            ? `🎉 太棒了！你已經完成了 ${stats.completedCourses} 門課程！`
-            : '💪 開始你的學習旅程吧！'}
-        </h3>
-        <p className="text-blue-100">
+      <div className="neo-card p-8 bg-neo-cyan">
+        <div className="border-neo border-neo-black bg-neo-black text-neo-white p-6 inline-block mb-4">
+          <h3 className="font-heading text-2xl uppercase">
+            {stats.completedCourses > 0
+              ? `🎉 太棒了！已完成 ${stats.completedCourses} 門課程！`
+              : '💪 開始你的學習旅程吧！'}
+          </h3>
+        </div>
+        <p className="font-body font-bold text-lg">
           {stats.inProgressCourses > 0
-            ? `繼續加油，你正在學習 ${stats.inProgressCourses} 門課程`
+            ? `正在學習 ${stats.inProgressCourses} 門課程 - 繼續加油！`
             : '點擊「我的課程」開始新的學習計畫'}
         </p>
       </div>
+
+      {/* Fun Stats */}
+      {stats.totalCourses > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="neo-card p-6 text-center">
+            <div className="border-neo border-neo-black bg-neo-yellow px-4 py-2 inline-block mb-4">
+              <p className="font-heading text-3xl uppercase">
+                {Math.round((stats.completedCourses / stats.totalCourses) * 100)}%
+              </p>
+            </div>
+            <p className="font-heading text-sm uppercase">完成率</p>
+          </div>
+
+          <div className="neo-card p-6 text-center">
+            <div className="border-neo border-neo-black bg-neo-cyan px-4 py-2 inline-block mb-4">
+              <p className="font-heading text-3xl uppercase">
+                {stats.totalCourses > 0 ? Math.round(stats.totalHours / stats.totalCourses) : 0}
+              </p>
+            </div>
+            <p className="font-heading text-sm uppercase">平均時數/課程</p>
+          </div>
+
+          <div className="neo-card p-6 text-center">
+            <div className="border-neo border-neo-black bg-neo-magenta text-neo-white px-4 py-2 inline-block mb-4">
+              <p className="font-heading text-3xl uppercase">
+                {stats.inProgressCourses}
+              </p>
+            </div>
+            <p className="font-heading text-sm uppercase">活躍課程</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
